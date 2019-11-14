@@ -13,6 +13,6 @@ git clone https://github.com/LibreRouterOrg/soporteremoto-dashboard.git
 npm install -g forever
 cd soporteremoto-dashboard/federated-server
 # Install dependencies
-yarn install
+npm install
 # Run
 forever start run.js
