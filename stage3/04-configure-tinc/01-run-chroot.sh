@@ -4,8 +4,25 @@ cat << EOF > /etc/tinc/librenet6/tinc.conf
 Name = host_$(hostname)
 Mode = switch
 EOF
-### Generate public key for this client tinc node
-tincd -n librenet6 -K </dev/null
+
+### Systemd startup script for generating tinc public key for this client node
+install -v -m 744 files/generate_tinc_keys.sh /opt/generate_tinc_keys.sh
+
+cat > /etc/systemd/system/tinc-credentials.service << EOF
+[Unit]
+Description=Setup foo
+#After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/generate_tinc_keys.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable tinc-credentials.service
+
 cat << EOF > /etc/tinc/librenet6/hosts/topu
 Address = bcnzf.librenet6.altermundi.net
 
@@ -18,7 +35,5 @@ RuHe74qk7JFD46JojgWjgRlqKUPQN0EuZfXOzMUFUswhGBIHDK9Qw7dGG4mDxzTM
 0j9aoBqYUmHCxia93jp42ENfAIgqezznXQIDAQAB
 -----END RSA PUBLIC KEY-----
 EOF
-# Give everyone access to read the RAS Public key 
-chmod a+r /etc/tinc/librenet6/hosts/host_$(hostname)
 
 systemctl enable tinc.service
