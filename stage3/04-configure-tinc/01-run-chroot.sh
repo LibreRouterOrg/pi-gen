@@ -10,8 +10,7 @@ install -v -m 744 files/generate_tinc_keys.sh /opt/generate_tinc_keys.sh
 
 cat > /etc/systemd/system/tinc-credentials.service << EOF
 [Unit]
-Description=Setup foo
-#After=network.target
+Description=Setup tinc credentials for librenet6
 
 [Service]
 Type=oneshot
@@ -24,7 +23,7 @@ EOF
 systemctl enable tinc-credentials.service
 
 cat << EOF > /etc/tinc/librenet6/hosts/topu
-Address = bcnzf.librenet6.altermundi.net
+Address = chato.altermundi.net
 
 -----BEGIN RSA PUBLIC KEY-----
 MIIBCgKCAQEA47/rwyb5UBe28/Hrtga8vDh9kFTew2x5Qz/WXrVNy7WWoEzsPhjw
