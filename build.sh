@@ -161,6 +161,8 @@ export DEPLOY_DIR=${DEPLOY_DIR:-"${BASE_DIR}/deploy"}
 export DEPLOY_ZIP="${DEPLOY_ZIP:-1}"
 export LOG_FILE="${WORK_DIR}/build.log"
 
+export HOSTNAME=${HOSTNAME:-raspberrypi}
+
 export FIRST_USER_NAME=${FIRST_USER_NAME:-pi}
 export FIRST_USER_PASS=${FIRST_USER_PASS:-raspberry}
 export WPA_ESSID
@@ -204,8 +206,6 @@ export QUILT_REFRESH_ARGS="-p ab"
 # SoporteRemoto Environment
 export NODE_VERSION="12.13.1"
 export NVM_DIR="/home/${FIRST_USER_NAME}/.nvm"
-# Setup a random hostname of 12 characters.
-export HOSTNAME=${HOSTNAME:-$(tr -dc 'A-Z0-9' < /dev/urandom | head -c12)}
 
 # shellcheck source=scripts/common
 source "${SCRIPT_DIR}/common"
