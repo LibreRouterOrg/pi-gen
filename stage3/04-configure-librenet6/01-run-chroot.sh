@@ -47,7 +47,7 @@ install -v -m 744 files/configure_librenet6.sh /opt/configure_librenet6.sh
 cat > /etc/systemd/system/librenet6-configure.service << EOF
 [Unit]
 Description=Setup the device to join librenet6
-TODO RUN BEFORE TINC
+Before=tinc.service
 
 [Service]
 Type=oneshot
