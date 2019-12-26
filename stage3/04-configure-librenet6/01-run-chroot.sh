@@ -39,7 +39,7 @@ EOF
 chmod +x /etc/tinc/librenet6/tinc-down
 
 # Enable tinc service
-systemctl enable tinc.service
+systemctl enable tinc@librenet6
 
 ## Device specific configuration for librenet6 handled by systemd startup script.
 cat > /etc/systemd/system/librenet6-configure.service << EOF

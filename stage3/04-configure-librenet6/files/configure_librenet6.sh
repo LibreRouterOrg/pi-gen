@@ -33,7 +33,7 @@ add_ip_to_interface(){
 }
 
 
-if [ ! -s /etc/tinc/librenet6/is_configured ] then
+if [ ! -e /etc/tinc/librenet6/is_configured ] then
 	add_name_to_tinc()
 	setup_credentials()
 	add_ip_to_interface()
