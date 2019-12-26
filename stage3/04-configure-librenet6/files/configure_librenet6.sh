@@ -29,7 +29,7 @@ setup_credentials(){
 
 add_ip_to_interface(){
 	IPV6="$(get_ipv6)"
-	echo "ip -6 address add $IPV6/64 dev \$INTERFACE" >> tinc-up
+	echo "ip -6 address add $IPV6/64 dev \$INTERFACE" >> /etc/tinc/librenet6/tinc-up
 }
 
 
