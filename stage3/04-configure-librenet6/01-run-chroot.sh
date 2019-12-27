@@ -45,7 +45,7 @@ systemctl enable tinc@librenet6
 cat > /etc/systemd/system/librenet6-configure.service << EOF
 [Unit]
 Description=Setup the device to join librenet6
-Before=tinc.service
+Before=tinc@librenet6
 
 [Service]
 Type=oneshot
