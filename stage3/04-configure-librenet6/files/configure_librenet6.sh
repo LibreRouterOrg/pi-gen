@@ -1,7 +1,5 @@
 #! /bin/bash
 
-# Setup a random tinc hostname of 12 characters.
-TINC_HOSTNAME="sr_$(tr -dc 'A-Z0-9' < /dev/urandom | head -c12)"
 IPV6_PREFIX="2a00:1508:1:f003"
 
 get_ipv6(){
@@ -15,13 +13,14 @@ get_ipv6(){
 }
 
 add_name_to_tinc(){
-	echo "Name = $TINC_HOSTNAME" >> /etc/tinc/librenet6/tinc.conf
+	# Final tinc name will be configured after FBW is run.
+	echo "Name = no_setup_yet" >> /etc/tinc/librenet6/tinc.conf
 }
 
 setup_credentials(){
 	tincd -n librenet6 -K </dev/null
-	# Give everyone access to read the RSA Public key 
-	chmod a+r /etc/tinc/librenet6/hosts/$TINC_HOSTNAME
+	# Give federated server access to modify librenet6 hosts
+	chmod -R a+rw /etc/tinc/librenet6/hosts/
 }
 
 add_ip_to_interface(){
