@@ -15,6 +15,8 @@ get_ipv6(){
 add_name_to_tinc(){
 	# Final tinc name will be configured after FBW is run.
 	echo "Name = no_setup_yet" >> /etc/tinc/librenet6/tinc.conf
+	# Give federated server access to modify the file
+	chmod a+wr /etc/tinc/librenet6/tinc.conf
 }
 
 setup_credentials(){
